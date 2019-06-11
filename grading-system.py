@@ -58,11 +58,32 @@ class Course:
             print(self.student_list[i].final_grade)
 
     def load_class(self):
-        pass
+        self.student_list.clear()
+        file_name = input("File name: ")
+        load_file = open(file_name, "r+")
+        for line in load_file:
+            data = line.split(',')
+            self.student.student_number = data[0]
+            self.student.lab_grade = data[1]
+            self.student.quiz_grade = data[2]
+            self.student.midterm_grade = data[3]
+            self.student.final_exam_grade = data[4]
+            self.student.final_grade = data[5]
+            self.student_list.append(self.student)
+        load_file.close()
 
     def save_class(self):
-        pass
-
+        file_name = input("File name: ")
+        save_file = open(file_name, "wb")
+        for i in range(len(self.student_list)):
+            save_file.write(bytes(self.student_list[i].student_number + ",", 'UTF-8'))
+            save_file.write(bytes(str(self.student_list[i].lab_grade) + ",", 'UTF-8'))
+            save_file.write(bytes(str(self.student_list[i].quiz_grade) + ",", 'UTF-8'))
+            save_file.write(bytes(str(self.student_list[i].midterm_grade) + ",", 'UTF-8'))
+            save_file.write(bytes(str(self.student_list[i].final_exam_grade) + ",", 'UTF-8'))
+            save_file.write(bytes(str(self.student_list[i].final_grade) + "\n", 'UTF-8'))
+        # save_file.write(bytes("]", 'UTF-8'))
+        save_file.close()
 
     def id_error_check(self):
         while True:
@@ -74,6 +95,18 @@ class Course:
             elif student_id[1] != '0':
                 print('Error, please try again: ', end='')
             elif (student_id[2] != '0') and (student_id[2] != '1'):
+                print('Error, please try again: ', end='')
+            elif not student_id[3].isdigit():
+                print('Error, please try again: ', end='')
+            elif not student_id[4].isdigit():
+                print('Error, please try again: ', end='')
+            elif not student_id[5].isdigit():
+                print('Error, please try again: ', end='')
+            elif not student_id[6].isdigit():
+                print('Error, please try again: ', end='')
+            elif not student_id[7].isdigit():
+                print('Error, please try again: ', end='')
+            elif not student_id[8].isdigit():
                 print('Error, please try again: ', end='')
             else:
                 return student_id
