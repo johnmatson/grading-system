@@ -50,13 +50,14 @@ class Course:
         del self.student_list[int(student_num) - 1]
 
     def print_grades(self):
+        print('{:10s} {:>9s} {:>9s} {:>9s} {:>9s} {:>9s}'.format('ID:', 'Lab:', 'Quiz:', 'Midterm:', 'Final:', 'GPA:'))
         for i in range(len(self.student_list)):
-            print(self.student_list[i].student_number)
-            print(self.student_list[i].lab_grade)
-            print(self.student_list[i].quiz_grade)
-            print(self.student_list[i].midterm_grade)
-            print(self.student_list[i].final_exam_grade)
-            print(self.student_list[i].final_grade)
+            print('{:10s} {:9.2f} {:9.2f} {:9.2f} {:9.2f} {:9.2f}'.format(self.student_list[i].student_number, self.student_list[i].lab_grade, self.student_list[i].quiz_grade, self.student_list[i].midterm_grade, self.student_list[i].final_exam_grade, self.student_list[i].final_grade))
+            # print(self.student_list[i].lab_grade, end='    ')
+            # print(self.student_list[i].quiz_grade, end='    ')
+            # print(self.student_list[i].midterm_grade, end='    ')
+            # print(self.student_list[i].final_exam_grade, end='    ')
+            # print(self.student_list[i].final_grade)
 
     def load_class(self):
         student = Student()
@@ -66,11 +67,11 @@ class Course:
         for line in load_file:
             data = line.split(',')
             student.student_number = data[0]
-            student.lab_grade = data[1]
-            student.quiz_grade = data[2]
-            student.midterm_grade = data[3]
-            student.final_exam_grade = data[4]
-            student.final_grade = data[5]
+            student.lab_grade = float(data[1])
+            student.quiz_grade = float(data[2])
+            student.midterm_grade = float(data[3])
+            student.final_exam_grade = float(data[4])
+            student.final_grade = float(data[5])
             self.student_list.append(student)
         load_file.close()
 
