@@ -12,41 +12,42 @@ class Student:
 
 class Course:
     student_list = []
-    student = Student()
 
     def add_student(self):
+        student = Student()
         print('Student Number: ', end='')
-        self.student.student_number = self.id_error_check()
+        student.student_number = self.id_error_check()
         print('Lab Grade: ', end='')
-        self.student.lab_grade = self.grade_error_check()
+        student.lab_grade = self.grade_error_check()
         print('Quiz Grade: ', end='')
-        self.student.quiz_grade = self.grade_error_check()
+        student.quiz_grade = self.grade_error_check()
         print('Midterm Grade: ', end='')
-        self.student.midterm_grade = self.grade_error_check()
+        student.midterm_grade = self.grade_error_check()
         print('Final Exam Grade: ', end='')
-        self.student.final_exam_grade = self.grade_error_check()
-        self.student.final_grade = (0.4 * self.student.lab_grade + 0.1 * self.student.quiz_grade + 0.2 * self.student.midterm_grade + 0.3 * self.student.final_exam_grade)
-        self.student_list.append(self.student)
+        student.final_exam_grade = self.grade_error_check()
+        student.final_grade = (0.4 * student.lab_grade + 0.1 * student.quiz_grade + 0.2 * student.midterm_grade + 0.3 * student.final_exam_grade)
+        self.student_list.append(student)
 
     def edit_student(self):
-        student = input('Which student would you like to edit: ')
+        student = Student()
+        student_num = input('Which student would you like to edit: ')
         print('Student Number: ', end='')
-        self.student.student_number = self.id_error_check()
+        student.student_number = self.id_error_check()
         print('Lab Grade: ', end='')
-        self.student.lab_grade = self.grade_error_check()
+        student.lab_grade = self.grade_error_check()
         print('Quiz Grade: ', end='')
-        self.student.quiz_grade = self.grade_error_check()
+        student.quiz_grade = self.grade_error_check()
         print('Midterm Grade: ', end='')
-        self.student.midterm_grade = self.grade_error_check()
+        student.midterm_grade = self.grade_error_check()
         print('Final Exam Grade: ', end='')
-        self.student.final_exam_grade = self.grade_error_check()
-        self.student.final_grade = (0.4 * self.student.lab_grade + 0.1 * self.student.quiz_grade + 0.2 * self.student.midterm_grade + 0.3 * self.student.final_exam_grade)
-        del self.student_list[int(student) - 1]
-        self.student_list.insert((int(student) - 1), self.student)
+        student.final_exam_grade = self.grade_error_check()
+        student.final_grade = (0.4 * student.lab_grade + 0.1 * student.quiz_grade + 0.2 * student.midterm_grade + 0.3 * student.final_exam_grade)
+        del self.student_list[int(student_num) - 1]
+        self.student_list.insert((int(student_num) - 1), student)
 
     def delete_student(self):
-        student = input('Which student would you like to delete: ')
-        del self.student_list[int(student) - 1]
+        student_num = input('Which student would you like to delete: ')
+        del self.student_list[int(student_num) - 1]
 
     def print_grades(self):
         for i in range(len(self.student_list)):
@@ -58,18 +59,19 @@ class Course:
             print(self.student_list[i].final_grade)
 
     def load_class(self):
+        student = Student()
         self.student_list.clear()
         file_name = input("File name: ")
         load_file = open(file_name, "r+")
         for line in load_file:
             data = line.split(',')
-            self.student.student_number = data[0]
-            self.student.lab_grade = data[1]
-            self.student.quiz_grade = data[2]
-            self.student.midterm_grade = data[3]
-            self.student.final_exam_grade = data[4]
-            self.student.final_grade = data[5]
-            self.student_list.append(self.student)
+            student.student_number = data[0]
+            student.lab_grade = data[1]
+            student.quiz_grade = data[2]
+            student.midterm_grade = data[3]
+            student.final_exam_grade = data[4]
+            student.final_grade = data[5]
+            self.student_list.append(student)
         load_file.close()
 
     def save_class(self):
