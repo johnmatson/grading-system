@@ -82,7 +82,6 @@ class Course:
             save_file.write(bytes(str(self.student_list[i].midterm_grade) + ",", 'UTF-8'))
             save_file.write(bytes(str(self.student_list[i].final_exam_grade) + ",", 'UTF-8'))
             save_file.write(bytes(str(self.student_list[i].final_grade) + "\n", 'UTF-8'))
-        # save_file.write(bytes("]", 'UTF-8'))
         save_file.close()
 
     def id_error_check(self):
